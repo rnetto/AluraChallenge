@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using AluraFlix.Data;
+using AluraFlix.Service;
 
 namespace AluraChallenge
 {
@@ -32,6 +35,11 @@ namespace AluraChallenge
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AluraChallenge", Version = "v1" });
             });
+
+            services.AddDbContext<AluraFlixContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("AluraFlixContext")));
+
+            services.AddScoped<IVideoService, VideoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

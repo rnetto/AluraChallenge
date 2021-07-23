@@ -90,7 +90,7 @@ namespace AluraFlix.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVideo(int id)
         {
-            var video = _videoContext.Delete(id);
+            var video = await _videoContext.Delete(id);
             if(video == null)
             {
                 return NotFound();

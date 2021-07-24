@@ -58,14 +58,27 @@ namespace AluraFlix.Controllers
         // PUT: api/Videos/id
        
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutVideo(int id, Video video)
+        public async Task<IActionResult> PutVideo(int id, VideoDto videoDto)
         {
-            var videoUp = await _videoContext.Update(id, video);
+            if (id != videoDto.Id)
+            {
+                return BadRequest();
+            }
 
+            var videoUpdate = new Video
+            {
+                Id = videoDto.Id,
+                Titulo = videoDto.Titulo,
+                Descricao = videoDto.Descricao,
+                Url = videoDto.Url
+            };
+
+            var videoUp = await _videoContext.Update(id, videoUpdate);
             if(videoUp == null)
             {
                 return BadRequest();
             }
+
             return Ok(videoUp);
         }
 

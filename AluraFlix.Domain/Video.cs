@@ -7,10 +7,10 @@ namespace AluraFlix.Domain
     {
         public int Id { get; set; }
         [Required]
-        [Range(2, 30)]
+        [Range(2, 50)]
         public string Titulo { get; set; }
         [Required]
-        [Range(20, 200)]
+        [Range(10, 200)]
         public string Descricao { get; set; }
         [Required]
         public string Url { get; set; }

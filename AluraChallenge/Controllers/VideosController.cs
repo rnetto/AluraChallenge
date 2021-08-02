@@ -52,7 +52,7 @@ namespace AluraFlix.Controllers
                 return NotFound("Video não encontrado.");
             }
 
-            return video;
+            return Ok(video);
         }
 
         // PUT: api/Videos/id
